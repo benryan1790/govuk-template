@@ -1,5 +1,5 @@
 @*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,27 +14,29 @@
  * limitations under the License.
  *@
 
-@(title: Option[String],
-  bodyClasses: Option[String])(
-  head: Html,
-  bodyEnd: Html,
-  insideHeader: Html,
-  afterHeader: Html,
-  footerTop: Html,
-  footerLinks: Option[Html],
-  nav: Boolean = false)(
-  content: Html
+@(
+        title: Option[String],
+        bodyClasses: Option[String])(
+        head: Html,
+        skipLinkHref: Option[String] = None,
+        bodyEnd: Html,
+        insideHeader: Html,
+        afterHeader: Html,
+        footerTop: Html,
+        footerLinks: Option[Html],
+        nav: Boolean = false)(
+        content: Html
 )(implicit messages: Messages)
 
 @import template._
 
 @lang = @{
-  messages.lang.code
+    messages.lang.code
 }
 
 <!DOCTYPE html>
 <!--[if lt IE 9]><html class="no-js lte-ie8" lang=@lang><![endif]-->
-<!--[if gt IE 8]><!--><html lang=@lang class="no-js"><!--<![endif]-->
+    <!--[if gt IE 8]><!--><html lang=@lang class="no-js"><!--<![endif]-->
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
@@ -94,7 +96,7 @@
 
         <div id="skiplink-container">
             <div>
-                <a id="skip-link" href="#content" class="skiplink">@messages("base.skip_link")</a>
+                <a id="skip-link" href="@skipLinkHref.getOrElse("#content")" class="skiplink">@messages("base.skip_link")</a>
             </div>
         </div>
 
